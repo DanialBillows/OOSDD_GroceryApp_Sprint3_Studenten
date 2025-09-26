@@ -5,10 +5,15 @@ on:
     branches:
       - main
       - infra/runner-toevoegen
+      - develop
+      - Release
+      - F/UC8
+      - F/UC9
   pull_request:
     branches:
       - main
       - develop
+      - Release
  
 jobs:
   test:
