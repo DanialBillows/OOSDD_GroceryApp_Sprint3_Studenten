@@ -50,6 +50,22 @@ namespace Grocery.App.ViewModels
                     AvailableProducts.Add(p);
         }
 
+        private void GetListItem()
+        {
+            if (searchText == "")
+            {
+                Load(GroceryList.Id);
+                return;
+            }
+            else
+            {
+                MyGroceryListItems.Clear();
+                foreach (var item in _groceryListItemsService.GetAllOnGroceryListId(GroceryList.Id))
+                    if (item.Product != null && item.Product.Name.ToLower().Contains(searchText.ToLower()))
+                        MyGroceryListItems.Add(item);
+            }
+        }
+
 
         partial void OnGroceryListChanged(GroceryList value)
         {
@@ -96,6 +112,13 @@ namespace Grocery.App.ViewModels
         {
             this.searchText = searchText;
             GetAvailableProducts();
+        }
+
+        [RelayCommand]
+        public void PerformSearchAvailableItems(string searchText)
+        {
+            this.searchText = searchText;
+            GetListItem();
         }
     }
 }

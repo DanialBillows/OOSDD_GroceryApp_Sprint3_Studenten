@@ -25,7 +25,8 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Stroke="#C49B33" StrokeThickness="4" Padding="10" Margin="10" HorizontalOptions="Center">
             <VerticalStackLayout>
-                <CollectionView ItemsSource="{Binding MyGroceryListItems}" Margin="20" HorizontalOptions="Center" EmptyView="De boodschappenlijst is nog leeg. Voeg eerst boodschappen toe!">
+				<SearchBar x:Name="searchBar" SearchCommand="{Binding PerformSearchAvailableItemsCommand}" SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+				<CollectionView ItemsSource="{Binding MyGroceryListItems}" Margin="20" HorizontalOptions="Center" EmptyView="De boodschappenlijst is nog leeg. Voeg eerst boodschappen toe!">
                     <CollectionView.ItemsLayout>
                         <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
                     </CollectionView.ItemsLayout>
